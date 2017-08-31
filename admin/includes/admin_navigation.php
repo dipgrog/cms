@@ -51,11 +51,11 @@
                     </li>
                 </ul>
             </li>
-            <li class="active">
+            <li>
                 <a href="categories.php"><i class="fa fa-fw fa-wrench"></i> Категории </a>
             </li>
             
-            <li>
+            <li class="active">
                 <a href="comments.php"><i class="fa fa-fw fa-file"></i> Комментарии </a>
             </li>
             <li>

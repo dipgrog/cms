@@ -34,7 +34,6 @@
 			while ($rr = mysqli_fetch_assoc($post_title_query)) {
 				$post_t = $rr['post_title'];
 			}
-
 			?>
 
 
@@ -47,22 +46,41 @@
 				<td> <?php echo $comment_email; ?> </td>
 				<td> <?php echo $comment_date; ?> </td>
 				<td> <?php echo $comment_status; ?> </td>
-				<td><a href="comments.php?source=status&p_id=<?php echo $comment_id; ?>">Approve</a></td>
-				<td><a href="comments.php?source=status&p_id=<?php echo $comment_id; ?>">Unapprove</a></td>
-				<td><a href="comments.php?delete=<?php echo $comment_id; ?>">Delete</a></td>
+				<td><a href="comments.php?approve=<?php echo $comment_id; ?>">Approve</a></td>
+				<td><a href="comments.php?unapprove=<?php echo $comment_id; ?>">Unapprove</a></td>
+				<td><a href="comments.php?delete=<?php echo $comment_id;?>">Delete</a></td>
 
 			</tr>
 			<?php } ?>
 		</tbody>
 	</table>
 
-	<?php 
-	if (isset($_GET['delete'])) {
-		$del_comment_id = $_GET['delete'];
-		$query = "DELETE FROM posts WHERE comment_id = {$del_comment_id}";
-		$delete_post = mysqli_query($connection, $query);
-		checkQuery($delete_post);
-		header('Location: posts.php');
-	}
+<?php 
+if (isset($_GET['delete'])) {
+	$del_comment_id = $_GET['delete'];
+	$query = "DELETE FROM comments WHERE comment_id = {$del_comment_id}";
+	$delete_comm = mysqli_query($connection, $query);
+	checkQuery($delete_comm);
+	header('Location: comments.php');
+}
+?>
 
-	?>
+<?php 
+if (isset($_GET['approve'])) {
+	$status_comment_id = $_GET['approve'];
+	$query = "UPDATE comments SET comment_status = 'approve' WHERE comment_id = {$status_comment_id}";
+	$status_comm = mysqli_query($connection, $query);
+	checkQuery($status_comm);
+	header('Location: comments.php');
+}
+?>
+
+<?php 
+if (isset($_GET['unapprove'])) {
+	$status_comment_id = $_GET['unapprove'];
+	$query = "UPDATE comments SET comment_status = 'unapprove' WHERE comment_id = {$status_comment_id}";
+	$status_comm = mysqli_query($connection, $query);
+	checkQuery($status_comm);
+	header('Location: comments.php');
+}
+?>
