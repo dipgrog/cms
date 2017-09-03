@@ -3,6 +3,17 @@ ini_set('display_errors',1);//Удалить
 error_reporting(E_ALL);//Удалить 
 ?> 
 <?php ob_start(); ?>
+<?php session_start(); ?>
+
+<?php 
+if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'admin')) {
+
+        header('Location: ../');
+    }
+
+
+ ?>
+
 <?php include '../includes/db.php' ?>
 <?php include 'functions.php' ?>
 <!DOCTYPE html>
@@ -33,6 +44,11 @@ error_reporting(E_ALL);//Удалить
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!-- <script type="text/javascript" src="https://www.google.com/jsapi"></script> -->
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    
 
 </head>
 

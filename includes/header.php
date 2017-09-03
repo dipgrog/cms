@@ -2,6 +2,7 @@
 ini_set('display_errors',1);//Удалить 
 error_reporting(E_ALL);//Удалить 
 ?> 
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 

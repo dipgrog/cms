@@ -57,8 +57,11 @@
 		$update_post = mysqli_query($connection, $query);
 
 		checkQuery($update_post);
-		header("Location: posts.php");
-	}
+		// header("Location: posts.php");
+		echo "<p class='bg-success'> Пост обновлён. <a href='../post.php?p_id=$post_id'>Посмотреть</a>
+		или <a href='posts.php'>перейти к списку</a>
+		</p>"; 
+ 	}
 ?>
 
 <form action="" method="POST" enctype="multipart/form-data">
@@ -91,7 +94,12 @@
 
 	<div class="form-group">
 		<label for='status'>Статус</label>
-		<input class="form-control" type="text" name="post_status" value="<?php echo $post_status; ?>">
+		<select name="post_status" id="">
+			<option value="<?php echo $post_status?>"><?php echo $post_status?></option>
+			<option value="draft">Черновик</option>
+			<option value="published">Опубликовано</option>
+		</select>
+		<!-- <input class="form-control" type="text" name="post_status" value="<?php echo $post_status; ?>"> -->
 	</div>
 
 	<div class="form-group">

@@ -15,13 +15,19 @@
 
 		move_uploaded_file($image_tmp, "../images/$image");
 	
-		$query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status)";
-		$query .="  VALUES ({$category_id}, '{$title}', '{$author}', now(), '{$image}', '{$content}', '{$tags}', '{$status}') ";
+		$query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status, post_comment_count)";
+		$query .="  VALUES ({$category_id}, '{$title}', '{$author}', now(), '{$image}', '{$content}', '{$tags}', '{$status}', 0) ";
+		
 
 		$add_post = mysqli_query($connection, $query);
 
 		checkQuery($add_post);
-		header("Location: posts.php");
+
+		$post_id = mysqli_insert_id($connection);
+		echo "<p class='bg-success'> Пост добавлен. <a href='../post.php?p_id=$post_id'>Посмотреть</a>
+		или <a href='posts.php'>перейти к списку</a>
+		</p>"; 
+		// header("Location: posts.php");
 
 	}
 ?>
@@ -57,7 +63,11 @@
 
 	<div class="form-group">
 		<label for='status'>Статус</label>
-		<input class="form-control" type="text" name="status">
+		<select name="status" id="">
+			<option value="draft">Черновик</option>
+			<option value="published">Опубликовано</option>
+		</select>
+		<!-- <input class="form-control" type="text" > -->
 	</div>
 
 	<div class="form-group">

@@ -27,15 +27,24 @@
                    }
                     ?>
 
-                    <li>
-                        <a href="admin">Admin</a>
-                    </li>
-<!--                     <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li> -->
+<!--                     <li><a href="admin">Admin</a></li> -->
+
+                    <?php 
+                        if (isset($_SESSION['user_role'])) {
+
+                            if ($_SESSION['user_role'] == 'admin') {
+                                echo "<li><a href='admin'>Admin</a></li>";
+                            
+
+                            if (isset($_GET['p_id'])) {
+                                $post_id = $_GET['p_id'];
+                                echo "<li><a href='admin/posts.php?source=edit_post&p_id={$post_id}'>Edit post</a></li>";
+                            }
+                        }
+                    }
+                    
+                    ?>
+
 
 
 
