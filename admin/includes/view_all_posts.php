@@ -69,6 +69,9 @@ if (isset($_POST['checkBoxArray'])) {
 				<th>Тэги</th>
 				<th>Комментарии</th>
 				<th>Дата</th>
+				<th>Read</th>
+				<th>Edit</th>
+				<th>Delete</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -113,8 +116,9 @@ if (isset($_POST['checkBoxArray'])) {
 					<td> <?php echo $post_tags; ?> </td>
 					<td> <?php echo $post_comment_count; ?> </td>
 					<td> <?php echo $post_date; ?> </td>
+					<td><a href="../post.php?p_id=<?php echo $post_id; ?>">Read</a></td>
 					<td><a href="posts.php?source=edit_post&p_id=<?php echo $post_id; ?>">Edit</a></td>
-					<td><a href="posts.php?delete=<?php echo $post_id; ?>">Delete</a></td>
+					<td><a onclick="javascript: return confirm('Удалить?');" href="posts.php?delete=<?php echo $post_id; ?>">Delete</a></td>
 
 				</tr>
 				<?php } ?>

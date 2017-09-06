@@ -69,6 +69,9 @@
                         $comment_email = $_POST['comment_email'];
                         $comment_content = $_POST['comment_content'];
 
+
+                        if (!empty($comment_author) && !empty($comment_email) && !empty($comment_content)) {
+
                         $query  = "INSERT INTO comments (";
                         $query .= "comment_post_id, ";
                         $query .= "comment_author, ";
@@ -91,7 +94,9 @@
                         $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $post_id";
                         $count = mysqli_query($connection, $query);
 
-
+                        }else{
+                            echo "<script>alert('Все поля должны быть заполнены')</script>";
+                        }
 
                     }
                  ?>
